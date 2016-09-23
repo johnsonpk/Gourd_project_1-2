@@ -1,29 +1,8 @@
 import java.util.Scanner;
 
-// I pretty much just need to start over on this. It got out of hand really quickly
-// :|
-
 public class Gourd01
 {
-	public static String StringRepair(int num, int sum, int[] leading_digit, String nextLine)
-	{
-		if(nextLine == "")
-			nextLine = nextLine.format("%d                    ,%d        %.2f%%", num, leading_digit[num], (leading_digit[num] / (double)sum));
-		if(nextLine.indexOf(",") > -1)
-		{
-			while((nextLine.indexOf(",") != 14))
-			{
-				nextLine = nextLine.substring(0,nextLine.indexOf(" ")) + nextLine.substring(nextLine.indexOf(" ") + 1);
-			}
-			nextLine = nextLine.replace(',', ' ');
-		}
-
-		while((nextLine.indexOf("%") != 31 ) && (nextLine.length() < 70))
-		{
-			nextLine =  nextLine.substring(0,nextLine.length() - 6) + " " + nextLine.substring(nextLine.length() - 6, nextLine.length());
-		}
-		return nextLine;
-	}
+	
 	public static void main(String args[])
 	{
 		// Instantiate variables
@@ -47,12 +26,24 @@ public class Gourd01
 			sum += i;
 		}
 
-		System.out.println("--------------------------------");
-		System.out.println("Leading Digit  Count           %");
-		System.out.println("--------------------------------");
-		for(num = 0; num < 10; num ++)
+		System.out.println("-------------------------------");
+		System.out.println("Leading Digit   Count         %");
+		System.out.println("-------------------------------");
+		
+		for(int i = 0; i < 10; i++)
 		{
-			nextLine = StringRepair(num, sum, leading_digit, "");
+			num = 11;
+			nextLine = "";
+			num -= (Integer.toString(leading_digit[i]).length() + Integer.toString(100 * leading_digit[i]/sum).length());
+			
+
+			for(int j = 0; j < num; j ++)
+			{
+				nextLine += " ";
+			}
+//			System.out.printf("Length %d:%d:%d\n",Integer.toString(leading_digit[i]).length(),Integer.toString(100 * leading_digit[i]/sum).length(),nextLine.length());
+			System.out.printf("%d               %d%s%.2f%%\n",i, leading_digit[i],nextLine, (100 * leading_digit[i] / (double)sum));
+		//	nextLine = StringRepair(num, sum, leading_digit, "");
 /*
 			nextLine = "";
 			nextLine = nextLine.format("%d                    ,%d      %.2f%%", num, leading_digit[num], (leading_digit[num] / (double)sum));
@@ -63,14 +54,19 @@ public class Gourd01
 			nextLine = nextLine.replace(',', ' ');
 */
 			
-			System.out.println(nextLine);
 		
 		}
-		String s1 = ""; 
-		s1 = s1.format("TOTAL         %d        100%%", sum, );
-		s1 = StringRepair(0,0,leading_digit,s1);
-		System.out.printf("%s\n", s1);
-		System.out.println("================================");
+		num = 8;
+		nextLine = "";
+		num -= Integer.toString(sum).length();
+
+		for(int j = 0; j < num; j ++)
+		{
+			nextLine += " ";
+		}
+		System.out.printf("TOTAL           %d%s%.2f%%\n", sum, nextLine, (double)sum / sum * 100);
+
+		System.out.println("===============================");
 
 	}
 }
