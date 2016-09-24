@@ -63,6 +63,8 @@ public class Gourd01
 		{
 			nextLine += " ";
 		}
+		
+		System.out.println("-------------------------------");
 		System.out.printf("TOTAL           %d%s%.2f%%\n", sum, nextLine, (double)sum / sum * 100);
 
 		System.out.println("===============================");
